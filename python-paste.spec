@@ -2,7 +2,7 @@
 
 Name:           python-paste
 Version:        1.7.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tools for using a Web Server Gateway Interface stack
 Group:          System Environment/Libraries
 # Most of the code is MIT
@@ -22,6 +22,11 @@ BuildRequires:  python-setuptools-devel
 
 Requires:       pyOpenSSL
 
+# the first two are backported from upstream, third is an additional adjustment
+Patch0:         bz783158_1-auth_tkt.py-enable-overriding-digest-algorithms.patch
+Patch1:         bz783158_2-auth_tkt.py-enable-overriding-digest-algorithms.patch
+Patch2:         bz783158_3-use-sha256-instead-of-md5.patch
+
 
 %description
 These provide several pieces of "middleware" (or filters) that can be nested
@@ -32,6 +37,9 @@ interfaces.
 
 %prep
 %setup -q -n Paste-%{version}
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 # Strip #! lines that make these seem like scripts
 %{__sed} -i -e '/^#!.*/,1 d' paste/util/scgiserver.py paste/debug/doctest_webapp.py
@@ -62,6 +70,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Mar 06 2012 Jan Pokorny <jpokorny@redhat.com> - 1.7.4-2
+- fix issue with unavailability of md5 in FIPS mode
+Resolves: rhbz#783158
+
 * Wed Jul 14 2010 David Malcolm <dmalcolm@redhat.com> - 1.7.4-1
 - rebase to 1.7.4; drop SSL patch (present in that tarball)
 - fix license tag
