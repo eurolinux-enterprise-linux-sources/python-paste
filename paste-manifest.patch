@@ -1,0 +1,15 @@
+diff -r 852439f67241 -r abaf4a78f69b MANIFEST.in
+--- a/MANIFEST.in	Wed Aug 17 15:52:53 2011 -0500
++++ b/MANIFEST.in	Wed Dec 21 09:00:48 2011 -0800
+@@ -1,6 +1,8 @@
+-recursive-include docs *.txt
++recursive-include docs *.txt *.css *.js
++include docs/_templates/*.html
+ include docs/conf.py
++include docs/test_server.ini
+ recursive-exclude docs/_build/_sources *
+ recursive-include docs/_build *.html
+-recursive-include tests *.txt *.py
+-recursive-include paste *.js *.jpg
++recursive-include tests *.txt *.py *.cgi *.html
++recursive-include paste *.js *.jpg *.png
