@@ -7,7 +7,7 @@
 
 Name:           python-paste
 Version:        1.7.5.1
-Release:        8.20111221hg1498%{?dist}
+Release:        9.20111221hg1498%{?dist}
 Summary:        Tools for using a Web Server Gateway Interface stack
 Group:          System Environment/Libraries
 # Most of the code is MIT
@@ -150,6 +150,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.7.5.1-9.20111221hg1498
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.7.5.1-8.20111221hg1498
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
